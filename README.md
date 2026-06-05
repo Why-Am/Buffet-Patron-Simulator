@@ -24,3 +24,9 @@ Subject to change
     - [ ] Drinks & liquids
     - [ ] Calorie counter
     - [ ] "Eating"
+
+## AI Disclosure
+
+- I direct the game
+- LLMs used for technical questions
+- There may be AI generated or architected code
