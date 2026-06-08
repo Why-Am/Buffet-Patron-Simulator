@@ -1,6 +1,7 @@
 // My implementation of a mesh deformer based on the AI-generated 
 // StructuralSoftBodyDeformer.cs, made to fit my project requirements.
 using UnityEngine;
+using System.Collections.Generic;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -9,6 +10,7 @@ using UnityEditor;
 public class FoodDeformer : MonoBehaviour
 {
     [Tooltip("How much of the mesh should be deformed from the bottom. 0 = none, 1 = whole mesh")]
+    [Range(0f, 1f)]
     public float bottomCutoffFraction = 0.5f;
 
     public bool useStructuralIntegrity = true;
@@ -28,23 +30,16 @@ public class FoodDeformer : MonoBehaviour
 
     private int DEFAULT_LAYER = 0;
 
+    private struct DisplacedVertexData
+    {
+        public Vector2 xzPos;
+        public Vector3 displacement;
+    }
 
     [ContextMenu("Snap to ground and deform food at current position")]
     public void SnapToGroundAndDeform()
     {
-        MeshFilter meshFilter = GetComponent<MeshFilter>();
-        if (meshFilter == null || meshFilter.sharedMesh == null)
-        {
-            Debug.LogError($"{gameObject.name} needs a MeshFilter with a valid mesh.");
-            return;
-        }
-
-        MeshCollider meshCollider = GetComponent<MeshCollider>();
-        if (meshCollider == null)
-        {
-            Debug.LogError($"{gameObject.name} needs a MeshCollider.");
-            return;
-        }
+        if (!TryGetRequiredComponents(out MeshFilter meshFilter, out MeshCollider meshCollider)) return;
 
 #if UNITY_EDITOR
         Undo.RecordObjects(new Object[] { transform, meshFilter, meshCollider }, "Snap to ground and deform");
@@ -58,12 +53,7 @@ public class FoodDeformer : MonoBehaviour
     [ContextMenu("Snap to ground at current position")]
     public void SnapToGround()
     {
-        MeshFilter meshFilter = GetComponent<MeshFilter>();
-        if (meshFilter == null || meshFilter.sharedMesh == null)
-        {
-            Debug.LogError($"{gameObject.name} needs a MeshFilter with a valid mesh.");
-            return;
-        }
+        if (!TryGetRequiredComponents(out MeshFilter meshFilter, out _)) return;
 
 #if UNITY_EDITOR
         Undo.RecordObject(transform, "Snap to ground");
@@ -76,19 +66,7 @@ public class FoodDeformer : MonoBehaviour
     [ContextMenu("Deform at current position")]
     public void Deform()
     {
-        MeshFilter meshFilter = GetComponent<MeshFilter>();
-        if (meshFilter == null || meshFilter.sharedMesh == null)
-        {
-            Debug.LogError($"{gameObject.name} needs a MeshFilter with a valid mesh.");
-            return;
-        }
-
-        MeshCollider meshCollider = GetComponent<MeshCollider>();
-        if (meshCollider == null)
-        {
-            Debug.LogError($"{gameObject.name} needs a MeshCollider.");
-            return;
-        }
+        if (!TryGetRequiredComponents(out MeshFilter meshFilter, out MeshCollider meshCollider)) return;
 
 #if UNITY_EDITOR
         Undo.RecordObjects(new Object[] { meshFilter, meshCollider }, "Snap to ground and deform");
@@ -98,7 +76,24 @@ public class FoodDeformer : MonoBehaviour
         Debug.Log("Deformed.");
     }
 
-    // Snaps object to ground
+    private bool TryGetRequiredComponents(out MeshFilter filter, out MeshCollider collider)
+    {
+        filter = GetComponent<MeshFilter>();
+        collider = GetComponent<MeshCollider>();
+
+        if (filter == null || filter.sharedMesh == null)
+        {
+            Debug.LogError($"{gameObject.name} needs a MeshFilter with a valid mesh.");
+            return false;
+        }
+        if (collider == null)
+        {
+            Debug.LogError($"{gameObject.name} needs a MeshCollider.");
+            return false;
+        }
+        return true;
+    }
+
     private void SnapToGround(MeshFilter meshFilter)
     {
         Vector3[] vertices = meshFilter.sharedMesh.vertices;
@@ -123,7 +118,6 @@ public class FoodDeformer : MonoBehaviour
                 if (dist < smallestDist)
                 {
                     smallestDist = dist;
-                    Debug.DrawRay(rayStart, Vector3.down * dist, Color.black, 10);
                 }
             }
         }
@@ -139,7 +133,17 @@ public class FoodDeformer : MonoBehaviour
     private void Deform(MeshFilter meshFilter, MeshCollider meshCollider)
     {
         Mesh originalMesh = meshFilter.sharedMesh;
+
+        // Clean up memory if we are continuously deforming an already generated mesh instance
+        if (originalMesh.name.EndsWith("_DeformedInstance"))
+        {
+            // We duplicate the original asset topology before modifying
+            originalMesh = Instantiate(originalMesh);
+        }
+
         Mesh deformedMesh = Instantiate(originalMesh);
+        deformedMesh.name = originalMesh.name.Replace("_DeformedInstance", "") + "_DeformedInstance";
+
         Vector3[] vertices = deformedMesh.vertices;
 
         // Ignore self in raycast
@@ -150,6 +154,7 @@ public class FoodDeformer : MonoBehaviour
         float totalHeight = maxY - minY;
         float bottomCutoff = minY + totalHeight * bottomCutoffFraction;
 
+        List<DisplacedVertexData> validDisplacements = new List<DisplacedVertexData>();
         Vector3[] displacements = new Vector3[vertices.Length];
         bool[] hasDisplacement = new bool[vertices.Length];
 
@@ -168,6 +173,12 @@ public class FoodDeformer : MonoBehaviour
 
                 displacements[i] = targetLocalPos - vertices[i];
                 hasDisplacement[i] = true;
+
+                validDisplacements.Add(new DisplacedVertexData
+                {
+                    xzPos = new Vector2(vertices[i].x, vertices[i].z),
+                    displacement = displacements[i]
+                });
             }
         }
 
@@ -176,7 +187,7 @@ public class FoodDeformer : MonoBehaviour
         {
             Vector3 referenceDisplacement = hasDisplacement[i] ?
                 displacements[i] :
-                GetReferenceDisplacement(vertices[i], hasDisplacement, vertices, displacements);
+                GetReferenceDisplacement(vertices[i], validDisplacements);
 
 
             if (useStructuralIntegrity)
@@ -195,6 +206,12 @@ public class FoodDeformer : MonoBehaviour
         deformedMesh.vertices = vertices;
         deformedMesh.RecalculateNormals();
         deformedMesh.RecalculateBounds();
+
+        // Prevent memory leak of old generated mesh if it was an instance
+        if (meshFilter.sharedMesh != null && meshFilter.sharedMesh.name.EndsWith("_DeformedInstance"))
+        {
+            DestroyImmediate(meshFilter.sharedMesh);
+        }
 
         meshFilter.sharedMesh = deformedMesh;
 
@@ -217,21 +234,21 @@ public class FoodDeformer : MonoBehaviour
         return (minY, maxY);
     }
 
-    private static Vector3 GetReferenceDisplacement(Vector3 vertex, bool[] hasDisplacement, Vector3[] vertices, Vector3[] displacements)
+    private static Vector3 GetReferenceDisplacement(Vector3 vertex, List<DisplacedVertexData> validDisplacements)
     {
-        Vector3 bestDisplacement = Vector3.zero;
-        float closestXZDistance = float.MaxValue;
+        if (validDisplacements.Count == 0) return Vector3.zero;
 
-        for (int j = 0; j < vertices.Length; j++)
+        Vector3 bestDisplacement = Vector3.zero;
+        float closestXZDistanceSq = float.MaxValue; // Use square magnitude to avoid heavy Mathf.Sqrt calculations
+        Vector2 vertexXZ = new Vector2(vertex.x, vertex.z);
+
+        for (int j = 0; j < validDisplacements.Count; j++)
         {
-            if (hasDisplacement[j])
+            float distSq = (vertexXZ - validDisplacements[j].xzPos).sqrMagnitude;
+            if (distSq < closestXZDistanceSq)
             {
-                float dist = Vector3.Distance(new Vector2(vertex.x, vertex.z), new Vector2(vertices[j].x, vertices[j].z));
-                if (dist < closestXZDistance)
-                {
-                    closestXZDistance = dist;
-                    bestDisplacement = displacements[j];
-                }
+                closestXZDistanceSq = distSq;
+                bestDisplacement = validDisplacements[j].displacement;
             }
         }
 
