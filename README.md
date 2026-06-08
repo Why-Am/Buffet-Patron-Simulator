@@ -1,19 +1,20 @@
 # Buffet Patron Simulator
 
-A game where you are at a buffet and can take food.
+A Unity game where you are at a buffet and can take food.
 
 Explore options and build out a plate.
-
-Made with Unity.
 
 ## Roadmap
 
 Subject to change
 
 - [ ] Demo features
-    - [ ] Plate
+    - [x] Plate
     - [ ] Rice
-    - [ ] Mesh deformation of food when placed
+    - [ ] Steak
+    - [x] Mesh deformation of food when placed
+    - [ ] Camera control when placing food
+    - [ ] Menu scene transitions into placement scene
 
 - [ ] MVP features
     - [ ] Movable character
@@ -21,9 +22,18 @@ Subject to change
     - [ ] 10+ foods with different structural properties
 
 - [ ] Extra features
+    - [ ] Decoration
+        - [ ] Add a table or something to the placement scene
     - [ ] Drinks & liquids
     - [ ] Calorie counter
     - [ ] "Eating"
+
+## Software used
+
+- Unity 6
+- Visual Studio Code
+- MagicaVoxel
+- Blender
 
 ## AI Disclosure
 
@@ -34,3 +44,4 @@ Subject to change
 ## Self Notes
 
 - For the purposes of this project, 1 voxel = 1x1x1 cm. Therefore, my models need to be scaled by 0.1 in Unity.
+- Models need many evenly distributed vertices for deformations to look good.
