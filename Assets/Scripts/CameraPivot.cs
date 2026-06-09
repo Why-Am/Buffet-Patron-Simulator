@@ -3,7 +3,11 @@ using UnityEngine.InputSystem;
 
 public class CameraPivot : MonoBehaviour
 {
-    public Transform cameraTransform;
+    [SerializeField]
+    private Transform cameraTransform;
+    [SerializeField]
+    private FoodPlacementManager foodPlacementManager;
+
     public float rotationSensitivity;
     public float zoomSensitivity;
 
@@ -12,6 +16,7 @@ public class CameraPivot : MonoBehaviour
 
     public float minCameraZ;
     private float maxCameraZ;
+    private Vector2 lastCursorPos;
 
     void Start()
     {
@@ -35,8 +40,11 @@ public class CameraPivot : MonoBehaviour
         {
             if (Mouse.current.rightButton.wasPressedThisFrame)
             {
+
+                lastCursorPos = Mouse.current.position.ReadValue();
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
+                foodPlacementManager.foodGhost.SetActive(false);
             }
 
             Vector2 orbitDelta = Mouse.current.delta.ReadValue();
@@ -48,7 +56,9 @@ public class CameraPivot : MonoBehaviour
         else if (Mouse.current.rightButton.wasReleasedThisFrame)
         {
             Cursor.lockState = CursorLockMode.None;
+            Mouse.current.WarpCursorPosition(lastCursorPos);
             Cursor.visible = true;
+            foodPlacementManager.foodGhost.SetActive(true);
         }
     }
     void HandleZoom()
