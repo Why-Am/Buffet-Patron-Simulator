@@ -150,7 +150,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Singleton
   foodToPlace: {fileID: 5638354456752643511, guid: ef52b7299130aa44e8e5ac22d2380d38, type: 3}
   platePrefab: {fileID: 7300447584994669608, guid: 841386798fc9fcb46a8d7340e7ce4070, type: 3}
-  plate: {fileID: 0}
 --- !u!4 &221829512
 Transform:
   m_ObjectHideFlags: 0
@@ -212,6 +211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraPivot
   cameraTransform: {fileID: 1822956279}
+  foodPlacementManager: {fileID: 2039965458}
   rotationSensitivity: 0.75
   zoomSensitivity: 0.25
   minCameraZ: -20
@@ -553,6 +553,7 @@ GameObject:
   - component: {fileID: 1555755639}
   - component: {fileID: 1555755638}
   - component: {fileID: 1555755637}
+  - component: {fileID: 1555755640}
   m_Layer: 5
   m_Name: DoneButton
   m_TagString: Untagged
@@ -662,6 +663,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1555755635}
   m_CullTransparentMesh: 1
+--- !u!114 &1555755640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1555755635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7047ddbb32e9fb479b76bb8e3afd193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DonePlacingButtonManager
+  foodPlacementManager: {fileID: 2039965458}
 --- !u!1 &1822956276
 GameObject:
   m_ObjectHideFlags: 0
@@ -1104,6 +1118,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FoodPlacementManager
   placingText: {fileID: 1933076779}
   mainCamera: {fileID: 1822956278}
+  ghostMaterial: {fileID: 2100000, guid: 5eee627866e3b3743bd6f38d22992aaa, type: 2}
+  doneButton: {fileID: 1555755637}
+  eventSystem: {fileID: 0}
+  foodGhost: {fileID: 0}
+  hoveringOverDoneButton: 0
 --- !u!4 &2039965459
 Transform:
   m_ObjectHideFlags: 0

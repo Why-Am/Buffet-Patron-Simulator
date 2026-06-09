@@ -1,14 +1,18 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Singleton : MonoBehaviour
 {
     public static Singleton Instance { get; private set; }
+
     public GameObject foodToPlace;
 
     [SerializeField]
     private GameObject platePrefab;
-    [SerializeField]
+
     private GameObject plate;
+
+    private string previousSceneName;
 
     void Awake()
     {
@@ -22,13 +26,42 @@ public class Singleton : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public GameObject InstantiatePlateAtOriginIfDoesNotExist()
+    public GameObject PutPlate(Vector3 position, Quaternion rotation)
     {
         if (plate == null)
         {
-            plate = Instantiate(platePrefab, Vector3.zero, Quaternion.identity);
+            Debug.Log("Instantiating new plate");
+            plate = Instantiate(platePrefab, position, rotation);
+            DontDestroyOnLoad(plate);
+        }
+        else
+        {
+            Debug.Log("Using existing plate");
+            plate.transform.SetPositionAndRotation(position, rotation);
         }
 
         return plate;
+    }
+
+    public GameObject PutPlateAtOrigin()
+    {
+        return PutPlate(Vector3.zero, Quaternion.identity);
+    }
+
+    public void ChangeScene(string name)
+    {
+        previousSceneName = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(name);
+    }
+
+    public void ChangeToPreviousScene()
+    {
+        if (previousSceneName == null)
+        {
+            Debug.Log("There is no previous scene to go to");
+            return;
+        }
+
+        ChangeScene(previousSceneName);
     }
 }

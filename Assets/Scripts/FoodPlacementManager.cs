@@ -1,6 +1,9 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class FoodPlacementManager : MonoBehaviour
 {
@@ -10,6 +13,10 @@ public class FoodPlacementManager : MonoBehaviour
     private Camera mainCamera;
     [SerializeField]
     private Material ghostMaterial;
+    [SerializeField]
+    private Button doneButton;
+    [SerializeField]
+    private EventSystem eventSystem;
 
     [HideInInspector]
     public GameObject foodGhost;
@@ -18,12 +25,18 @@ public class FoodPlacementManager : MonoBehaviour
     private GameObject plate;
     private float yRotationDegrees = 0;
 
+    // Managed by DonePlacingButtonManager.cs
+    [HideInInspector]
+    public bool hoveringOverDoneButton = false;
+
     void Start()
     {
         foodPrefab = Singleton.Instance.foodToPlace;
+        placingText.text = $"Placing: {foodPrefab.name}";
+
         InitFoodGhost();
-        placingText.text = $"Placing {foodPrefab.name}";
-        plate = Singleton.Instance.InstantiatePlateAtOriginIfDoesNotExist();
+
+        plate = Singleton.Instance.PutPlateAtOrigin();
     }
 
     void InitFoodGhost()
@@ -35,10 +48,11 @@ public class FoodPlacementManager : MonoBehaviour
 
     void Update()
     {
+        if (hoveringOverDoneButton) return;
+
         Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
         if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
         {
-            // TODO: add ghost and rotation
             foodGhost.transform.position = hit.point;
 
             if (Keyboard.current.rKey.wasPressedThisFrame)
@@ -62,5 +76,10 @@ public class FoodPlacementManager : MonoBehaviour
                 foodDeformer.SnapToGroundAndDeform();
             }
         }
+    }
+
+    public void DonePlacingFood()
+    {
+        Singleton.Instance.ChangeToPreviousScene();
     }
 }

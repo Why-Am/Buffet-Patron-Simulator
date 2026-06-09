@@ -14,7 +14,7 @@ Subject to change
     - [ ] Steak
     - [x] Mesh deformation of food when placed
     - [x] Camera control when placing food
-    - [ ] Menu scene transitions into placement scene
+    - [x] Menu scene transitions into placement scene (and back)
 
 - [ ] MVP features
     - [ ] Movable character
