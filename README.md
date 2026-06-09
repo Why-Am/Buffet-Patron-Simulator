@@ -10,10 +10,10 @@ Subject to change
 
 - [ ] Demo features
     - [x] Plate
-    - [ ] Rice
+    - [x] Rice
     - [ ] Steak
     - [x] Mesh deformation of food when placed
-    - [ ] Camera control when placing food
+    - [x] Camera control when placing food
     - [ ] Menu scene transitions into placement scene
 
 - [ ] MVP features
