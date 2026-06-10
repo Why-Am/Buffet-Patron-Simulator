@@ -120,7 +120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FoodDeformer
   bottomCutoffFraction: 0.5
   useStructuralIntegrity: 1
-  structuralDisintegrity: 0.5
+  structuralDisintegrity: 0.2
   padding: 0.001
   raycastYOffset: 1
   raycastMaxDistance: 10
