@@ -16,12 +16,12 @@ public class FoodDeformer : MonoBehaviour
     [Tooltip("Padding to prevent z-fighting")]
     public float padding = 0.001f;
 
-    public float raycastYOffset = 0f;
+    public float raycastYOffset = 1f;
     public float raycastMaxDistance = 10f;
 
-    private int IGNORE_RAYCAST_LAYER = 2;
+    private const int IGNORE_RAYCAST_LAYER = 2;
 
-    private int DEFAULT_LAYER = 0;
+    private const int DEFAULT_LAYER = 0;
 
     private Mesh originalMesh;
     private Mesh runtimeDeformedMesh;

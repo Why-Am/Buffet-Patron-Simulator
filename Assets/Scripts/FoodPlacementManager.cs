@@ -29,6 +29,8 @@ public class FoodPlacementManager : MonoBehaviour
     [HideInInspector]
     public bool hoveringOverDoneButton = false;
 
+    private const int IGNORE_RAYCAST_LAYER = 2;
+
     void Start()
     {
         foodPrefab = Singleton.Instance.foodToPlace;
@@ -42,6 +44,7 @@ public class FoodPlacementManager : MonoBehaviour
     void InitFoodGhost()
     {
         foodGhost = Instantiate(foodPrefab);
+        foodGhost.layer = IGNORE_RAYCAST_LAYER;
         var meshRenderer = foodGhost.GetComponent<MeshRenderer>();
         meshRenderer.material = ghostMaterial;
     }
