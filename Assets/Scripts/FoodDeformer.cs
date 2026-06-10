@@ -16,7 +16,7 @@ public class FoodDeformer : MonoBehaviour
     [Tooltip("Padding to prevent z-fighting")]
     public float padding = 0.001f;
 
-    public float raycastYOffset = 1f;
+    public float raycastYOffset = 0.1f;
     public float raycastMaxDistance = 10f;
 
     private const int IGNORE_RAYCAST_LAYER = 2;
