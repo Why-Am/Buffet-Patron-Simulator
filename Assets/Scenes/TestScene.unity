@@ -772,12 +772,24 @@ PrefabInstance:
       value: RicePrefab
       objectReference: {fileID: 0}
     - target: {fileID: 7611905231241681612, guid: ef52b7299130aa44e8e5ac22d2380d38, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 7611905231241681612, guid: ef52b7299130aa44e8e5ac22d2380d38, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 7611905231241681612, guid: ef52b7299130aa44e8e5ac22d2380d38, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 7611905231241681612, guid: ef52b7299130aa44e8e5ac22d2380d38, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.0539
       objectReference: {fileID: 0}
     - target: {fileID: 7611905231241681612, guid: ef52b7299130aa44e8e5ac22d2380d38, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.2687
+      value: 0.0352
       objectReference: {fileID: 0}
     - target: {fileID: 7611905231241681612, guid: ef52b7299130aa44e8e5ac22d2380d38, type: 3}
       propertyPath: m_LocalPosition.z
