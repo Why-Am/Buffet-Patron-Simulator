@@ -45,3 +45,13 @@ Subject to change
 
 - For the purposes of this project, 1 voxel = 1x1x1 cm. Therefore, my models need to be scaled by 0.1 in Unity.
 - Models need many evenly distributed vertices for deformations to look good.
+- Voxel model textures don't work well with Blender remesh. I'll see if I can paint the textures directly in Blender instead.
+
+### How to Add Food Items
+
+1. Make the model and texture
+2. If needed, voxel remesh in blender to increase vertices
+3. After importing to Unity, enable Read/Write on the model
+4. Create a prefab with a MeshFilter, MeshCollider, and the FoodDeformer script
+5. Add to Assets/Resources/FoodItems/
+6. Done.
