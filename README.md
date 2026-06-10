@@ -8,8 +8,8 @@ Explore options and build out a plate.
 
 Subject to change
 
-- [ ] Demo features
-    - [ ] Plate
+- [x] Demo features
+    - [x] Plate
     - [x] Rice
     - [x] Steak
     - [x] Mesh deformation of food when placed
