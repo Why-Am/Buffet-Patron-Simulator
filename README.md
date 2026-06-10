@@ -9,9 +9,9 @@ Explore options and build out a plate.
 Subject to change
 
 - [ ] Demo features
-    - [x] Plate
+    - [ ] Plate
     - [x] Rice
-    - [ ] Steak
+    - [x] Steak
     - [x] Mesh deformation of food when placed
     - [x] Camera control when placing food
     - [x] Menu scene transitions into placement scene (and back)
@@ -32,25 +32,29 @@ Subject to change
 
 - Unity 6
 - Visual Studio Code
-- MagicaVoxel
+- ~~MagicaVoxel~~
 - Blender
 
 ## AI Disclosure
 
 - I direct the game
+- I make art assets
 - LLMs used for technical questions
 - There may be AI generated or architected code - I aim to understand, adapt, and tweak such code
 
 ## Self Notes
 
-- For the purposes of this project, 1 voxel = 1x1x1 cm. Therefore, my models need to be scaled by 0.1 in Unity.
+- ~~For the purposes of this project, 1 voxel = 1x1x1 cm. Therefore, my models need to be scaled by 0.1 in Unity.~~
 - Models need many evenly distributed vertices for deformations to look good.
 - Voxel model textures don't work well with Blender remesh. I'll see if I can paint the textures directly in Blender instead.
 
 ### How to Add Food Items
 
-1. Make the model and texture
-2. If needed, voxel remesh in blender to increase vertices
+1. Make the model and texture. 
+    - Name each element (e.g., material) descriptively so they will be easier to find in Unity.
+    - Ensure it has enough vertices for mesh deformation to work.
+    - The pivot of the model should be at its bottom
+    - Export settings: selected objects, apply transform
 3. After importing to Unity, enable Read/Write on the model
 4. Create a prefab with a MeshFilter, MeshCollider, and the FoodDeformer script
 5. Add to Assets/Resources/FoodItems/
