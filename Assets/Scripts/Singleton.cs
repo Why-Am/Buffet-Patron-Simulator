@@ -14,6 +14,9 @@ public class Singleton : MonoBehaviour
 
     private string previousSceneName;
 
+    private Vector3? lastPlayerPosition;
+    private Quaternion? lastPlayerRotation;
+
     void Awake()
     {
         if (Instance != null)
@@ -63,5 +66,38 @@ public class Singleton : MonoBehaviour
         }
 
         ChangeScene(previousSceneName);
+    }
+
+    public bool TryGetLastPlayerPositionAndRotation(out Vector3 position, out Quaternion rotation)
+    {
+        if (lastPlayerPosition == null || lastPlayerRotation == null)
+        {
+            // Debug.Log("Couldn't get last player position and rotation");
+            position = Vector3.zero;
+            rotation = Quaternion.identity;
+            return false;
+        }
+
+        position = lastPlayerPosition.GetValueOrDefault();
+        rotation = lastPlayerRotation.GetValueOrDefault();
+        // Debug.Log($"Using last position ({position}) and rotation ({rotation})");
+        return true;
+    }
+
+    public void SetLastPlayerPositionAndRotation(Vector3 position, Quaternion rotation)
+    {
+        lastPlayerPosition = position;
+        lastPlayerRotation = rotation;
+    }
+
+    public void SetPlateCollisions(bool enabled)
+    {
+        if (plate == null) return;
+
+        plate.GetComponent<MeshCollider>().enabled = enabled;
+        foreach (var meshCollider in plate.GetComponentsInChildren<MeshCollider>())
+        {
+            meshCollider.enabled = enabled;
+        }
     }
 }
