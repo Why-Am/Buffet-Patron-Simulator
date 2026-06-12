@@ -5,14 +5,14 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/FullMenuScene.unity
     guid: 28df29b490413744eb376889daafda48
   - enabled: 1
-    path: Assets/Scenes/FoodPlacementScene.unity
-    guid: 98ee987887b4a2a4aa1224d758636444
-  - enabled: 1
     path: Assets/Scenes/BuffetScene.unity
     guid: a9141ba210c84ff459e57222d9b8a407
+  - enabled: 1
+    path: Assets/Scenes/FoodPlacementScene.unity
+    guid: 98ee987887b4a2a4aa1224d758636444
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
