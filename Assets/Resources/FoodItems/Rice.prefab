@@ -119,6 +119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FoodDeformer
   bottomCutoffFraction: 0.5
+  maximumDeformation: 5
   useStructuralIntegrity: 0
   structuralDisintegrity: 1
   padding: 0.001

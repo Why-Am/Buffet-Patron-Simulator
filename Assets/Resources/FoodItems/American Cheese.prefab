@@ -66,34 +66,16 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5a4bbafab835b1c43a8635ee85f7aef3, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 753593564036147148}
+      addedObject: {fileID: 3141692148224250216}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5a4bbafab835b1c43a8635ee85f7aef3, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3141692148224250216}
+      addedObject: {fileID: 753593564036147148}
   m_SourcePrefab: {fileID: 100100000, guid: 5a4bbafab835b1c43a8635ee85f7aef3, type: 3}
 --- !u!1 &2662959369206621794 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5a4bbafab835b1c43a8635ee85f7aef3, type: 3}
   m_PrefabInstance: {fileID: 2897453649050917683}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &753593564036147148
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2662959369206621794}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7745c96963cfab4a979c9af2f3ab57a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FoodDeformer
-  bottomCutoffFraction: 0.5
-  useStructuralIntegrity: 0
-  structuralDisintegrity: 1
-  padding: 0.001
-  raycastYOffset: 0.1
-  raycastMaxDistance: 10
 --- !u!64 &3141692148224250216
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -116,3 +98,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -5823929759838969852, guid: 5a4bbafab835b1c43a8635ee85f7aef3, type: 3}
+--- !u!114 &753593564036147148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2662959369206621794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7745c96963cfab4a979c9af2f3ab57a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FoodDeformer
+  bottomCutoffFraction: 0.5
+  maximumDeformation: 100
+  useStructuralIntegrity: 0
+  structuralDisintegrity: 1
+  padding: 0.001
+  raycastYOffset: 0.1
+  raycastMaxDistance: 10

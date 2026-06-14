@@ -6,6 +6,8 @@ public class FoodDeformer : MonoBehaviour
     [Tooltip("How much of the mesh should be deformed from the bottom. 0 = none, 1 = whole mesh")]
     [Range(0f, 1f)]
     public float bottomCutoffFraction = 0.5f;
+    [Tooltip("How much the mesh is allowed to deform as a multiple of its height")]
+    public float maximumDeformation = 2f;
 
     public bool useStructuralIntegrity = true;
 
@@ -129,7 +131,10 @@ public class FoodDeformer : MonoBehaviour
                 Vector3 targetWorldPos = hit.point + (hit.normal * padding);
                 Vector3 targetLocalPos = transform.InverseTransformPoint(targetWorldPos);
 
-                displacements[i] = targetLocalPos - vertices[i];
+                float displacement = targetLocalPos.y - vertices[i].y;
+                displacement = Mathf.Clamp(displacement, -maximumDeformation * totalHeight, 0);
+
+                displacements[i] = Vector3.up * displacement;
                 hasDisplacement[i] = true;
 
                 validDisplacements.Add(new DisplacedVertexData
