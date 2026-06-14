@@ -33,9 +33,7 @@ public class Singleton : MonoBehaviour
     {
         if (plate == null)
         {
-            Debug.Log("Instantiating new plate");
-            plate = Instantiate(platePrefab, position, rotation);
-            DontDestroyOnLoad(plate);
+            plate = InstantiateNewPlate(position, rotation);
         }
         else
         {
@@ -46,9 +44,26 @@ public class Singleton : MonoBehaviour
         return plate;
     }
 
+    public GameObject InstantiateNewPlate(Vector3 position, Quaternion rotation)
+    {
+        if (plate != null)
+        {
+            Destroy(plate);
+        }
+        Debug.Log("Instantiating new plate");
+        plate = Instantiate(platePrefab, position, rotation);
+        DontDestroyOnLoad(plate);
+        return plate;
+    }
+
     public GameObject PutPlateAtOrigin()
     {
         return PutPlate(Vector3.zero, Quaternion.identity);
+    }
+
+    public GameObject InstantiateNewPlateAtOrigin()
+    {
+        return InstantiateNewPlate(Vector3.zero, Quaternion.identity);
     }
 
     public void ChangeScene(string name)

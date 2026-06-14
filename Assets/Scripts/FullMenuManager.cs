@@ -52,4 +52,9 @@ public class FullMenuManager : MonoBehaviour
         Singleton.Instance.foodToPlace = foodPrefab;
         Singleton.Instance.ChangeScene("FoodPlacementScene");
     }
+
+    public void ResetPlate()
+    {
+        Singleton.Instance.InstantiateNewPlateAtOrigin();
+    }
 }

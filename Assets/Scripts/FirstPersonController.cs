@@ -184,4 +184,11 @@ public class FirstPersonController : MonoBehaviour
         Quaternion rotation = Quaternion.Euler(xRotation, transform.rotation.eulerAngles.y, 0);
         return (transform.position, rotation);
     }
+
+    public void ResetPlate()
+    {
+        Vector3 plateStartPosition = transform.TransformPoint(plateOffset);
+        plate = Singleton.Instance.InstantiateNewPlate(plateStartPosition, Quaternion.identity);
+        Singleton.Instance.SetPlateCollisions(false);
+    }
 }
