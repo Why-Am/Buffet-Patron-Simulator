@@ -15,7 +15,7 @@ public class CameraPivot : MonoBehaviour
     private float rotationY;
 
     public float minCameraZ;
-    private float maxCameraZ;
+    public float maxCameraZ;
     private Vector2 lastCursorPos;
 
     void Start()
@@ -23,8 +23,6 @@ public class CameraPivot : MonoBehaviour
         Vector2 angles = transform.rotation.eulerAngles;
         rotationX = angles.y;
         rotationY = angles.x;
-
-        maxCameraZ = cameraTransform.localPosition.z;
     }
 
     // Update is called once per frame
@@ -66,7 +64,7 @@ public class CameraPivot : MonoBehaviour
         float cameraMoveValue = Mouse.current.scroll.y.ReadValue();
         if (cameraMoveValue == 0) return;
 
-        float cameraZ = cameraTransform.localPosition.z + cameraMoveValue * zoomSensitivity;
+        float cameraZ = cameraTransform.localPosition.z + cameraMoveValue * zoomSensitivity * (-cameraTransform.localPosition.z);
         cameraZ = Mathf.Clamp(cameraZ, minCameraZ, maxCameraZ);
         cameraTransform.localPosition = Vector3.forward * cameraZ;
         // Debug.Log($"Moved camera Z by {cameraMoveValue * zoomSensitivity}");
