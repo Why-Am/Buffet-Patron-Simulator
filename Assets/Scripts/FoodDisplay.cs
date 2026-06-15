@@ -8,6 +8,7 @@ public class FoodDisplay : Interactable
 {
     public GameObject food;
 
+#if UNITY_EDITOR
     [ContextMenu("Initialize")]
     void Initialize()
     {
@@ -41,6 +42,7 @@ public class FoodDisplay : Interactable
 
         Undo.CollapseUndoOperations(group);
     }
+#endif
 
     public override string GetHintText() => $"Press E to add {food.name}";
 
