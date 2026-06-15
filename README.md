@@ -1,5 +1,7 @@
 # Buffet Patron Simulator
 
+Play: https://yhlu.itch.io/buffet-patron-simulator
+
 A Unity game where you are at a buffet and can take food.
 
 Explore options and build out a plate.
@@ -16,10 +18,10 @@ Subject to change
     - [x] Camera control when placing food
     - [x] Menu scene transitions into placement scene (and back)
 
-- [ ] MVP features
-    - [ ] Movable character
-    - [ ] Plate exchange
-    - [ ] 10+ foods with different structural properties
+- [x] MVP features
+    - [x] Movable character
+    - [x] Plate exchange
+    - [x] ~10 foods with different structural properties
 
 - [ ] Extra features
     - [ ] Decoration
