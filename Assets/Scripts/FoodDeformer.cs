@@ -63,14 +63,14 @@ public class FoodDeformer : MonoBehaviour
 
     public void SnapToGroundAndDeform()
     {
-        Debug.Log($"SnapToGroundAndDeform called on {gameObject.name}");
+        // Debug.Log($"SnapToGroundAndDeform called on {gameObject.name}");
         if (originalMesh == null) return;
 
         SnapToGround();
         Deform();
     }
 
-    private void SnapToGround()
+    public void SnapToGround()
     {
         Vector3[] vertices = originalMesh.vertices;
         float smallestDist = float.MaxValue;
