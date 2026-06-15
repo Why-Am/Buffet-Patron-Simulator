@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(CharacterController))]
 public class FirstPersonController : MonoBehaviour
 {
-    public float mouseSensitivity = 100f;
     public float speed;
     public float gravity = -9.81f;
     public float lowestPossibleY = -50f;
@@ -15,6 +14,7 @@ public class FirstPersonController : MonoBehaviour
     public LayerMask interactableLayer;
     public Vector3 plateOffset;
     public TextMeshProUGUI interactHintText;
+    public SettingsPanelManager settingsPanelManager;
 
     private Vector3 startPosition;
     private Quaternion startRotation;
@@ -48,8 +48,7 @@ public class FirstPersonController : MonoBehaviour
         Debug.Log("Initializing FirstPersonController");
         Cursor.lockState = CursorLockMode.Locked;
         characterController = GetComponent<CharacterController>();
-        startPosition = transform.position;
-        startRotation = transform.rotation;
+        (startPosition, startRotation) = GetPositionAndLook();
 
         // Restore position if coming back from another scene
         if (Singleton.Instance.TryGetLastPlayerPositionAndRotation(out Vector3 lastPosition, out Quaternion lastRotation))
@@ -65,11 +64,21 @@ public class FirstPersonController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UpdateSettingsPanel();
+        if (settingsPanelManager.IsOpen) return;
+        CheckIfFellOffWorld();
         UpdateMovement();
         UpdateLook();
         MovePlate();
         UpdateInteraction();
-        CheckIfFellOffWorld();
+    }
+
+    void UpdateSettingsPanel()
+    {
+        if (Keyboard.current.tabKey.wasPressedThisFrame)
+        {
+            settingsPanelManager.ToggleOpen();
+        }
     }
 
     void UpdateMovement()
@@ -120,7 +129,7 @@ public class FirstPersonController : MonoBehaviour
 
     void UpdateLook()
     {
-        Vector2 mouseMovement = mouseSensitivity * Time.deltaTime * Mouse.current.delta.ReadValue();
+        Vector2 mouseMovement = Singleton.Instance.mouseSensitivity * Time.deltaTime * Mouse.current.delta.ReadValue();
         xRotation -= mouseMovement.y;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
@@ -163,7 +172,7 @@ public class FirstPersonController : MonoBehaviour
         if (transform.position.y > lowestPossibleY) return;
 
         Debug.Log("Player fell off world, returning.");
-        transform.SetPositionAndRotation(startPosition, startRotation);
+        SetPositionAndLook(startPosition, startRotation);
         xRotation = 0;
     }
 
