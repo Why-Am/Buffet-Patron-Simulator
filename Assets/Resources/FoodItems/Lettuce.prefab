@@ -102,8 +102,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7745c96963cfab4a979c9af2f3ab57a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FoodDeformer
-  bottomCutoffFraction: 0.5
-  maximumDeformation: 2
+  bottomCutoffFraction: 0.8
+  maximumDeformation: 3
   useStructuralIntegrity: 1
   structuralDisintegrity: 0.5
   padding: 0.001
