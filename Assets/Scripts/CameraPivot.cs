@@ -41,7 +41,6 @@ public class CameraPivot : MonoBehaviour
 
                 lastCursorPos = Mouse.current.position.ReadValue();
                 Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
                 foodPlacementManager.foodGhost.SetActive(false);
             }
 
@@ -55,7 +54,6 @@ public class CameraPivot : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.None;
             Mouse.current.WarpCursorPosition(lastCursorPos);
-            Cursor.visible = true;
             foodPlacementManager.foodGhost.SetActive(true);
         }
     }
