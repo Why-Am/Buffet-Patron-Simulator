@@ -45,7 +45,7 @@ public class FirstPersonController : MonoBehaviour
 
     void Initialize()
     {
-        Debug.Log("Initializing FirstPersonController");
+        // Debug.Log("Initializing FirstPersonController");
         Cursor.lockState = CursorLockMode.Locked;
         characterController = GetComponent<CharacterController>();
         (startPosition, startRotation) = GetPositionAndLook();
@@ -171,7 +171,7 @@ public class FirstPersonController : MonoBehaviour
     {
         if (transform.position.y > lowestPossibleY) return;
 
-        Debug.Log("Player fell off world, returning.");
+        // Debug.Log("Player fell off world, returning.");
         SetPositionAndLook(startPosition, startRotation);
         xRotation = 0;
     }

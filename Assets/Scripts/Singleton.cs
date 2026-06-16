@@ -39,7 +39,7 @@ public class Singleton : MonoBehaviour
         }
         else
         {
-            Debug.Log("Using existing plate");
+            // Debug.Log("Using existing plate");
             plate.transform.SetPositionAndRotation(position, rotation);
         }
 
@@ -52,7 +52,7 @@ public class Singleton : MonoBehaviour
         {
             Destroy(plate);
         }
-        Debug.Log("Instantiating new plate");
+        // Debug.Log("Instantiating new plate");
         plate = Instantiate(platePrefab, position, rotation);
         DontDestroyOnLoad(plate);
         return plate;
@@ -78,7 +78,7 @@ public class Singleton : MonoBehaviour
     {
         if (previousSceneName == null)
         {
-            Debug.Log("There is no previous scene to go to");
+            // Debug.Log("There is no previous scene to go to");
             return;
         }
 
