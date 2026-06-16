@@ -115,5 +115,5 @@ MonoBehaviour:
   useStructuralIntegrity: 0
   structuralDisintegrity: 1
   padding: 0.001
-  raycastYOffset: 0.1
+  raycastYOffset: 0.01
   raycastMaxDistance: 10

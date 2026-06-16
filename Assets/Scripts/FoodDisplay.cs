@@ -36,9 +36,7 @@ public class FoodDisplay : Interactable
             return;
         }
 
-        displayFood.transform.localPosition = Vector3.up * 3;
-        foodDeformer.Initialize();
-        foodDeformer.SnapToGround();
+        displayFood.transform.localPosition = Vector3.up * 0.5f;
 
         Undo.CollapseUndoOperations(group);
     }
