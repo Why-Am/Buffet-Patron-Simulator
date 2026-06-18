@@ -7,7 +7,7 @@ public class Singleton : MonoBehaviour
 
     public GameObject foodToPlace;
 
-    public float mouseSensitivity = 100f;
+    public float mouseSensitivity = 25f;
 
     [SerializeField]
     private GameObject platePrefab;
