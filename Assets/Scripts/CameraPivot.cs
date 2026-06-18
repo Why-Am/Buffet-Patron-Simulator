@@ -8,7 +8,6 @@ public class CameraPivot : MonoBehaviour
     [SerializeField]
     private FoodPlacementManager foodPlacementManager;
 
-    public float rotationSensitivity;
     public float zoomSensitivity;
 
     private float rotationX;
@@ -45,8 +44,9 @@ public class CameraPivot : MonoBehaviour
             }
 
             Vector2 orbitDelta = Mouse.current.delta.ReadValue();
-            rotationX += orbitDelta.x * rotationSensitivity;
-            rotationY -= orbitDelta.y * rotationSensitivity;
+            float sensitivity = Singleton.Instance.mouseSensitivity * 0.01f;
+            rotationX += orbitDelta.x * sensitivity;
+            rotationY -= orbitDelta.y * sensitivity;
             rotationY = Mathf.Clamp(rotationY, 0, 90);
             transform.rotation = Quaternion.Euler(rotationY, rotationX, 0);
         }
