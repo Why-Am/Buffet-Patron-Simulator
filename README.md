@@ -30,12 +30,18 @@ Subject to change
     - [ ] Calorie counter
     - [ ] "Eating"
 
-## Software used
+## Credits
+
+### Software
 
 - Unity 6
 - Visual Studio Code
 - ~~MagicaVoxel~~
 - Blender
+
+### Assets
+
+- Skybox: [Joburg Central Sunset (CC0)](https://polyhaven.com/a/sunset_jhbcentral)
 
 ## AI Disclosure
 
