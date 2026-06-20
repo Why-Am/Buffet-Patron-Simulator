@@ -46,7 +46,7 @@ Subject to change
 ## AI Disclosure
 
 - I direct the game
-- I make art assets
+- I make art assets (aside from those credited above)
 - LLMs used for technical questions
 - There may be AI generated or architected code - I aim to understand, adapt, and tweak such code
 
