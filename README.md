@@ -39,9 +39,10 @@ Subject to change
 - ~~MagicaVoxel~~
 - Blender
 
-### Assets
+### Third Party Assets
 
-- Skybox: [Joburg Central Sunset (CC0)](https://polyhaven.com/a/sunset_jhbcentral)
+- Skybox: [Joburg Central Sunset](https://polyhaven.com/a/sunset_jhbcentral) from Polyhaven under [CC0](https://creativecommons.org/publicdomain/zero/1.0/)
+- Plate exchange sound effect: ["Plates stack on top of each other, clatter, version 3"](https://www.zapsplat.com/music/plates-stack-on-top-of-each-other-clatter-version-3) from Zapsplat under the [standard license for free users](https://www.zapsplat.com/license-type/standard-license/)
 
 ## AI Disclosure
 
