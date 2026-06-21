@@ -1,6 +1,15 @@
+using UnityEngine;
+
+[RequireComponent(typeof(AudioSource))]
 public class PlateExchange : Interactable
 {
     public FirstPersonController firstPersonController;
+    private AudioSource audioSource;
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     public override string GetHintText()
     {
@@ -11,5 +20,6 @@ public class PlateExchange : Interactable
     {
         base.Interact();
         firstPersonController.ResetPlate();
+        audioSource.Play();
     }
 }
