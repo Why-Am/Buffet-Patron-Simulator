@@ -87,7 +87,6 @@ public class Singleton : MonoBehaviour
         }
 
         glass = Instantiate(glassPrefab, position, rotation);
-        // TODO: this might be a problem when changing scenes
         DontDestroyOnLoad(glass);
         return glass;
     }

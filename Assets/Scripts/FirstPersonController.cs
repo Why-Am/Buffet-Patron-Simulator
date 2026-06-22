@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -248,5 +247,12 @@ public class FirstPersonController : MonoBehaviour
         Vector3 plateStartPosition = transform.TransformPoint(plateOffset);
         plate = Singleton.Instance.InstantiateNewPlate(plateStartPosition, Quaternion.identity);
         Singleton.Instance.SetPlateCollisions(false);
+    }
+
+    public void ResetGlass()
+    {
+        Vector3 glassStartPosition = transform.TransformPoint(glassOffset); ;
+        glass = Singleton.Instance.InstantiateNewGlass(glassStartPosition, Quaternion.identity);
+        Singleton.Instance.SetGlassActive(true);
     }
 }
