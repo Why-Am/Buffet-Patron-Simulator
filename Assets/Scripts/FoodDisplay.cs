@@ -44,6 +44,8 @@ public class FoodDisplay : Interactable
 
     public override string GetHintText() => $"Press E to add {food.name}";
 
+    public override InteractableType GetInteractableType() => InteractableType.SingleInteractAndChangeScene;
+
     protected override void Interact()
     {
         base.Interact();

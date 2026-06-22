@@ -9,10 +9,17 @@ public class Singleton : MonoBehaviour
 
     public float mouseSensitivity = 25f;
 
+    public bool glassInFountainDrinkDispenser = false;
+
     [SerializeField]
     private GameObject platePrefab;
 
+    [SerializeField]
+    private GameObject glassPrefab;
+
     private GameObject plate;
+
+    private GameObject glass;
 
     private string previousSceneName;
 
@@ -46,6 +53,20 @@ public class Singleton : MonoBehaviour
         return plate;
     }
 
+    public GameObject PutGlass(Vector3 position, Quaternion rotation)
+    {
+        if (glass == null)
+        {
+            glass = InstantiateNewGlass(position, rotation);
+        }
+        else
+        {
+            glass.transform.SetPositionAndRotation(position, rotation);
+        }
+
+        return glass;
+    }
+
     public GameObject InstantiateNewPlate(Vector3 position, Quaternion rotation)
     {
         if (plate != null)
@@ -56,6 +77,19 @@ public class Singleton : MonoBehaviour
         plate = Instantiate(platePrefab, position, rotation);
         DontDestroyOnLoad(plate);
         return plate;
+    }
+
+    public GameObject InstantiateNewGlass(Vector3 position, Quaternion rotation)
+    {
+        if (glass != null)
+        {
+            Destroy(glass);
+        }
+
+        glass = Instantiate(glassPrefab, position, rotation);
+        // TODO: this might be a problem when changing scenes
+        DontDestroyOnLoad(glass);
+        return glass;
     }
 
     public GameObject PutPlateAtOrigin()
@@ -116,5 +150,12 @@ public class Singleton : MonoBehaviour
         {
             meshCollider.enabled = enabled;
         }
+    }
+
+    public void SetGlassActive(bool active)
+    {
+        if (glass == null) return;
+
+        glass.SetActive(active);
     }
 }

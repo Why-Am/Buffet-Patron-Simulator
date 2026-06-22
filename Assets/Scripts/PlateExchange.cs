@@ -11,10 +11,9 @@ public class PlateExchange : Interactable
         audioSource = GetComponent<AudioSource>();
     }
 
-    public override string GetHintText()
-    {
-        return "Press E to exchange plates";
-    }
+    public override string GetHintText() => "Press E to exchange plates";
+
+    public override InteractableType GetInteractableType() => InteractableType.SingleInteract;
 
     protected override void Interact()
     {

@@ -40,6 +40,7 @@ public class FoodPlacementManager : MonoBehaviour
 
         plate = Singleton.Instance.PutPlateAtOrigin();
         Singleton.Instance.SetPlateCollisions(true);
+        Singleton.Instance.SetGlassActive(false);
     }
 
     void InitFoodGhost()

@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -13,6 +14,7 @@ public class FirstPersonController : MonoBehaviour
     public float interactDistance = 1f;
     public LayerMask interactableLayer;
     public Vector3 plateOffset;
+    public Vector3 glassOffset;
     public TextMeshProUGUI interactHintText;
     public SettingsPanelManager settingsPanelManager;
 
@@ -23,6 +25,8 @@ public class FirstPersonController : MonoBehaviour
     private bool isGrounded;
     private float xRotation = 0f;
     private GameObject plate;
+    private GameObject glass;
+    private Interactable currentInteractable;
 
     void OnEnable()
     {
@@ -59,6 +63,12 @@ public class FirstPersonController : MonoBehaviour
         Vector3 plateStartPosition = transform.TransformPoint(plateOffset);
         plate = Singleton.Instance.PutPlate(plateStartPosition, Quaternion.identity);
         Singleton.Instance.SetPlateCollisions(false);
+
+        Vector3 glassStartPosition = transform.TransformPoint(glassOffset);
+        glass = Singleton.Instance.PutGlass(glassStartPosition, Quaternion.identity);
+        Singleton.Instance.SetGlassActive(true);
+
+        interactHintText.text = "";
     }
 
     // Update is called once per frame
@@ -69,7 +79,7 @@ public class FirstPersonController : MonoBehaviour
         CheckIfFellOffWorld();
         UpdateMovement();
         UpdateLook();
-        MovePlate();
+        MovePlateAndGlass();
         UpdateInteraction();
     }
 
@@ -122,9 +132,14 @@ public class FirstPersonController : MonoBehaviour
 
     // Necessary because DontDestroyOnLoad only works on root GameObjects
     // TODO: make smooth?
-    void MovePlate()
+    void MovePlateAndGlass()
     {
         plate.transform.SetPositionAndRotation(transform.TransformPoint(plateOffset), transform.rotation);
+
+        if (!Singleton.Instance.glassInFountainDrinkDispenser)
+        {
+            glass.transform.SetPositionAndRotation(transform.TransformPoint(glassOffset), transform.rotation);
+        }
     }
 
     void UpdateLook()
@@ -140,30 +155,64 @@ public class FirstPersonController : MonoBehaviour
 
     void UpdateInteraction()
     {
+        void ClearLastInteractable()
+        {
+            if (currentInteractable != null)
+            {
+                currentInteractable.BaseOnHoverExit();
+                currentInteractable = null;
+                interactHintText.text = "";
+            }
+            return;
+        }
+
         Ray ray = new(cameraTransform.position, cameraTransform.forward);
 
         if (!Physics.Raycast(ray, out RaycastHit hitInfo, interactDistance, interactableLayer))
         {
-            // Debug.Log("Raycast failed");
-            interactHintText.text = "";
+            ClearLastInteractable();
             return;
         }
-
 
         if (!hitInfo.collider.TryGetComponent<Interactable>(out var interactable))
         {
-            interactHintText.text = "";
+            ClearLastInteractable();
             return;
         }
 
-        // Debug.Log($"Hovering over interactable {interactable.name}");
-        interactHintText.text = interactable.GetHintText();
-
-        if (Keyboard.current.eKey.wasPressedThisFrame)
+        if (interactable != currentInteractable)
         {
-            (Vector3 position, Quaternion rotation) = GetPositionAndLook();
-            Singleton.Instance.SetLastPlayerPositionAndRotation(position, rotation);
-            interactable.BaseInteract();
+            if (currentInteractable != null)
+            {
+                currentInteractable.BaseOnHoverExit();
+            }
+            currentInteractable = interactable;
+            interactable.BaseOnHoverEnter();
+            interactHintText.text = interactable.GetHintText();
+        }
+
+        switch (interactable.GetInteractableType())
+        {
+            case InteractableType.SingleInteract:
+                if (Keyboard.current.eKey.wasPressedThisFrame)
+                {
+                    interactable.BaseInteract();
+                }
+                break;
+            case InteractableType.SingleInteractAndChangeScene:
+                if (Keyboard.current.eKey.wasPressedThisFrame)
+                {
+                    (Vector3 position, Quaternion rotation) = GetPositionAndLook();
+                    Singleton.Instance.SetLastPlayerPositionAndRotation(position, rotation);
+                    interactable.BaseInteract();
+                }
+                break;
+            case InteractableType.ContinuousInteract:
+                if (Keyboard.current.eKey.isPressed)
+                {
+                    interactable.BaseInteract();
+                }
+                break;
         }
     }
 
