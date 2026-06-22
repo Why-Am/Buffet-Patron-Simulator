@@ -26,7 +26,7 @@ Subject to change
 - [ ] Extra features
     - [ ] Decoration
         - [ ] Add a table or something to the placement scene
-    - [ ] Drinks & liquids
+    - [x] Drinks & liquids
     - [ ] Calorie counter
     - [ ] "Eating"
 
