@@ -14,5 +14,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FoodPlacementScene.unity
     guid: 98ee987887b4a2a4aa1224d758636444
+  - enabled: 1
+    path: Assets/Scenes/InspectScene.unity
+    guid: a587d19c3de78a047b3101df77756091
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

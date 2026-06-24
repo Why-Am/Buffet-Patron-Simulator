@@ -597,6 +597,7 @@ MonoBehaviour:
   padding: 0.001
   raycastYOffset: 0.1
   raycastMaxDistance: 10
+  weight: 0
 --- !u!64 &51398053
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -730,6 +731,7 @@ MonoBehaviour:
   padding: 0.001
   raycastYOffset: 0.1
   raycastMaxDistance: 10
+  weight: 0
 --- !u!64 &55450480
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1113,6 +1115,7 @@ MonoBehaviour:
   padding: 0.001
   raycastYOffset: 0.1
   raycastMaxDistance: 10
+  weight: 0
 --- !u!64 &68767979
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1246,6 +1249,7 @@ MonoBehaviour:
   padding: 0.001
   raycastYOffset: 0.1
   raycastMaxDistance: 10
+  weight: 0
 --- !u!64 &72658266
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2570,6 +2574,7 @@ MonoBehaviour:
   padding: 0.001
   raycastYOffset: 0.1
   raycastMaxDistance: 10
+  weight: 0
 --- !u!64 &434557711
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3119,7 +3124,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'tab: toggle settings panel
+  m_text: 'i: inspect food
+
+    tab: toggle settings panel
 
     wasd: move'
   m_isRightToLeft: 0
@@ -3148,7 +3155,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36.9
+  m_fontSize: 26.85
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4309,6 +4316,7 @@ MonoBehaviour:
   padding: 0.001
   raycastYOffset: 0.1
   raycastMaxDistance: 10
+  weight: 0
 --- !u!64 &705115896
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4442,6 +4450,7 @@ MonoBehaviour:
   padding: 0.001
   raycastYOffset: 0.1
   raycastMaxDistance: 10
+  weight: 0
 --- !u!64 &708847265
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4575,6 +4584,7 @@ MonoBehaviour:
   padding: 0.001
   raycastYOffset: 0.1
   raycastMaxDistance: 10
+  weight: 0
 --- !u!64 &729565988
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5368,6 +5378,7 @@ MonoBehaviour:
   padding: 0.001
   raycastYOffset: 0.1
   raycastMaxDistance: 10
+  weight: 0
 --- !u!64 &1002258076
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -6099,6 +6110,7 @@ MonoBehaviour:
   padding: 0.001
   raycastYOffset: 0.1
   raycastMaxDistance: 10
+  weight: 0
 --- !u!64 &1199395292
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -6522,6 +6534,7 @@ MonoBehaviour:
   padding: 0.001
   raycastYOffset: 0.1
   raycastMaxDistance: 10
+  weight: 0
 --- !u!64 &1244092311
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -6907,6 +6920,7 @@ MonoBehaviour:
   padding: 0.001
   raycastYOffset: 0.1
   raycastMaxDistance: 10
+  weight: 0
 --- !u!64 &1315302396
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -8790,6 +8804,7 @@ MonoBehaviour:
   padding: 0.001
   raycastYOffset: 0.1
   raycastMaxDistance: 10
+  weight: 0
 --- !u!64 &1702269810
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -9623,6 +9638,7 @@ MonoBehaviour:
   padding: 0.001
   raycastYOffset: 0.1
   raycastMaxDistance: 10
+  weight: 0
 --- !u!64 &1986826329
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -10460,6 +10476,7 @@ MonoBehaviour:
   padding: 0.001
   raycastYOffset: 0.1
   raycastMaxDistance: 10
+  weight: 0
 --- !u!64 &2077850465
 MeshCollider:
   m_ObjectHideFlags: 0

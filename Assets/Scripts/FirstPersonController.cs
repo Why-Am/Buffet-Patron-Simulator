@@ -80,6 +80,7 @@ public class FirstPersonController : MonoBehaviour
         UpdateLook();
         MovePlateAndGlass();
         UpdateInteraction();
+        UpdateInspectScene();
     }
 
     void UpdateSettingsPanel()
@@ -258,5 +259,14 @@ public class FirstPersonController : MonoBehaviour
         Vector3 glassStartPosition = transform.TransformPoint(glassOffset); ;
         glass = Singleton.Instance.InstantiateNewGlass(glassStartPosition, Quaternion.identity);
         Singleton.Instance.SetGlassActive(true);
+    }
+
+    void UpdateInspectScene()
+    {
+        if (!Keyboard.current.iKey.wasPressedThisFrame) return;
+
+        (Vector3 position, Quaternion rotation) = GetPositionAndLook();
+        Singleton.Instance.SetLastPlayerPositionAndRotation(position, rotation);
+        Singleton.Instance.ChangeScene("InspectScene");
     }
 }

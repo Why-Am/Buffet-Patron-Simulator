@@ -40,7 +40,10 @@ public class CameraPivot : MonoBehaviour
 
                 lastCursorPos = Mouse.current.position.ReadValue();
                 Cursor.lockState = CursorLockMode.Locked;
-                foodPlacementManager.foodGhost.SetActive(false);
+                if (foodPlacementManager != null)
+                {
+                    foodPlacementManager.foodGhost.SetActive(false);
+                }
             }
 
             Vector2 orbitDelta = Mouse.current.delta.ReadValue();
@@ -54,7 +57,11 @@ public class CameraPivot : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.None;
             Mouse.current.WarpCursorPosition(lastCursorPos);
-            foodPlacementManager.foodGhost.SetActive(true);
+
+            if (foodPlacementManager != null)
+            {
+                foodPlacementManager.foodGhost.SetActive(true);
+            }
         }
     }
     void HandleZoom()
