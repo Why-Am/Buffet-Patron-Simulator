@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(AudioSource))]
 public class FoodPlacementManager : MonoBehaviour
 {
     [SerializeField]
@@ -24,6 +25,7 @@ public class FoodPlacementManager : MonoBehaviour
     private GameObject foodPrefab;
     private GameObject plate;
     private float yRotationDegrees = 0;
+    private AudioSource foodPlaceAudio;
 
     // Managed by DonePlacingButtonManager.cs
     [HideInInspector]
@@ -41,6 +43,8 @@ public class FoodPlacementManager : MonoBehaviour
         plate = Singleton.Instance.PutPlateAtOrigin();
         Singleton.Instance.SetPlateCollisions(true);
         Singleton.Instance.SetGlassActive(false);
+
+        foodPlaceAudio = GetComponent<AudioSource>();
     }
 
     void InitFoodGhost()
@@ -79,6 +83,23 @@ public class FoodPlacementManager : MonoBehaviour
 
                 foodDeformer.Initialize();
                 foodDeformer.SnapToGroundAndDeform();
+
+                switch (foodDeformer.weight)
+                {
+                    case FoodWeight.Heavy:
+                        foodPlaceAudio.volume = 1;
+                        break;
+                    case FoodWeight.Medium:
+                        foodPlaceAudio.volume = .5f;
+                        break;
+                    case FoodWeight.Light:
+                        foodPlaceAudio.volume = .25f;
+                        break;
+                    default:
+                        Debug.LogError($"Food weight for {spawnedFood.name} not set");
+                        break;
+                }
+                foodPlaceAudio.Play();
             }
         }
     }

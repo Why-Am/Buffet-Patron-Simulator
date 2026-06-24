@@ -21,6 +21,8 @@ public class FoodDeformer : MonoBehaviour
     public float raycastYOffset = 0.1f;
     public float raycastMaxDistance = 10f;
 
+    public FoodWeight weight;
+
     private const int IGNORE_RAYCAST_LAYER = 2;
 
     private const int DEFAULT_LAYER = 0;
@@ -225,4 +227,11 @@ public class FoodDeformer : MonoBehaviour
         if (originalMesh != null) Destroy(originalMesh);
         if (runtimeDeformedMesh != null) Destroy(runtimeDeformedMesh);
     }
+}
+
+public enum FoodWeight
+{
+    Heavy,
+    Medium,
+    Light,
 }

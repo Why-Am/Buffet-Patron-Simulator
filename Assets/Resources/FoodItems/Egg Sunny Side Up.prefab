@@ -109,3 +109,4 @@ MonoBehaviour:
   padding: 0.001
   raycastYOffset: 0.1
   raycastMaxDistance: 10
+  weight: 1

@@ -45,6 +45,7 @@ Subject to change
 - Plate exchange sound effect: ["Plates stack on top of each other, clatter, version 3"](https://www.zapsplat.com/music/plates-stack-on-top-of-each-other-clatter-version-3) from Zapsplat under the [standard license for free users](https://www.zapsplat.com/license-type/standard-license/)
 - Glass exchange sound effect: ["Empty drinking glasses, beer jugs clink together, cheers, full sides touch, medium"](https://www.zapsplat.com/music/empty-drinking-glasses-beer-jugs-clink-together-cheers-full-sides-touch-medium/) from Zapsplat under the [standard license for free users](https://www.zapsplat.com/license-type/standard-license/)
 - Soda fountain dispensing sound effect: ["FillUpDrinkInCafeteria.wav"](https://freesound.org/people/ViaTorci/sounds/66791/) from Freesound under [CC0](https://creativecommons.org/publicdomain/zero/1.0/)
+- Food placing sound effect: ["Toast place down on surface"](https://www.zapsplat.com/music/toast-place-down-on-surface/) from Zapsplat under the [standard license for free users](https://www.zapsplat.com/license-type/standard-license/)
 
 ## AI Disclosure
 
