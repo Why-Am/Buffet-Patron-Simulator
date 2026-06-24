@@ -15,9 +15,9 @@ public class PlateExchange : Interactable
 
     public override InteractableType GetInteractableType() => InteractableType.SingleInteract;
 
-    protected override void Interact()
+    protected override void SingleInteract()
     {
-        base.Interact();
+        base.SingleInteract();
         firstPersonController.ResetPlate();
         audioSource.Play();
     }

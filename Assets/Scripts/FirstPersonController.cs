@@ -195,7 +195,7 @@ public class FirstPersonController : MonoBehaviour
             case InteractableType.SingleInteract:
                 if (Keyboard.current.eKey.wasPressedThisFrame)
                 {
-                    interactable.BaseInteract();
+                    interactable.BaseSingleInteract();
                 }
                 break;
             case InteractableType.SingleInteractAndChangeScene:
@@ -203,13 +203,17 @@ public class FirstPersonController : MonoBehaviour
                 {
                     (Vector3 position, Quaternion rotation) = GetPositionAndLook();
                     Singleton.Instance.SetLastPlayerPositionAndRotation(position, rotation);
-                    interactable.BaseInteract();
+                    interactable.BaseSingleInteract();
                 }
                 break;
-            case InteractableType.ContinuousInteract:
-                if (Keyboard.current.eKey.isPressed)
+            case InteractableType.HoldInteract:
+                if (Keyboard.current.eKey.wasPressedThisFrame)
                 {
-                    interactable.BaseInteract();
+                    interactable.BaseHoldInteractStart();
+                }
+                else if (Keyboard.current.eKey.wasReleasedThisFrame)
+                {
+                    interactable.BaseHoldInteractEnd();
                 }
                 break;
         }

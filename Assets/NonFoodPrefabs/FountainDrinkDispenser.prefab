@@ -129,3 +129,6 @@ MonoBehaviour:
   drinkName: 
   drinkColor: {r: 0, g: 0, b: 0, a: 0}
   glass: {fileID: 0}
+  fillStart: {fileID: 0}
+  fillMiddle: {fileID: 0}
+  fillEnd: {fileID: 0}

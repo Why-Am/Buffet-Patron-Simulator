@@ -27,7 +27,7 @@ public class FountainDrinkDispenser : Interactable
 
     public override string GetHintText() => $"Hold E to pour {drinkName}";
 
-    public override InteractableType GetInteractableType() => InteractableType.ContinuousInteract;
+    public override InteractableType GetInteractableType() => InteractableType.HoldInteract;
 
     protected override void OnHoverEnter()
     {
@@ -44,14 +44,21 @@ public class FountainDrinkDispenser : Interactable
     protected override void OnHoverExit()
     {
         base.OnHoverExit();
+        glass.StopFilling();
         Singleton.Instance.glassInFountainDrinkDispenser = false;
         glass = null;
     }
 
-    protected override void Interact()
+    protected override void HoldInteractStart()
     {
-        base.Interact();
-        glass.Add(drinkColor);
+        base.HoldInteractStart();
+        glass.StartFilling(drinkColor);
+    }
+
+    protected override void HoldInteractEnd()
+    {
+        base.HoldInteractEnd();
+        glass.StopFilling();
     }
 
 #if UNITY_EDITOR

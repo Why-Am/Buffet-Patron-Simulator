@@ -46,9 +46,9 @@ public class FoodDisplay : Interactable
 
     public override InteractableType GetInteractableType() => InteractableType.SingleInteractAndChangeScene;
 
-    protected override void Interact()
+    protected override void SingleInteract()
     {
-        base.Interact();
+        base.SingleInteract();
         Singleton.Instance.foodToPlace = food;
         Singleton.Instance.ChangeScene("FoodPlacementScene");
     }

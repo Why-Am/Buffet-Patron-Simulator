@@ -2,9 +2,9 @@ using UnityEngine;
 
 public abstract class Interactable : MonoBehaviour
 {
-    public void BaseInteract()
+    public void BaseSingleInteract()
     {
-        Interact();
+        SingleInteract();
     }
 
     public void BaseOnHoverEnter()
@@ -17,12 +17,32 @@ public abstract class Interactable : MonoBehaviour
         OnHoverExit();
     }
 
+    public void BaseHoldInteractStart()
+    {
+        HoldInteractStart();
+    }
+
+    public void BaseHoldInteractEnd()
+    {
+        HoldInteractEnd();
+    }
+
     public abstract string GetHintText();
     public abstract InteractableType GetInteractableType();
 
-    protected virtual void Interact()
+    protected virtual void SingleInteract()
     {
         // Debug.Log($"Interacted with {gameObject.name}");
+    }
+
+    protected virtual void HoldInteractStart()
+    {
+
+    }
+
+    protected virtual void HoldInteractEnd()
+    {
+
     }
 
     protected virtual void OnHoverEnter()
@@ -40,5 +60,5 @@ public enum InteractableType
 {
     SingleInteract,
     SingleInteractAndChangeScene,
-    ContinuousInteract,
+    HoldInteract,
 }

@@ -9,13 +9,20 @@ public class Glass : MonoBehaviour
 
     // 0 (empty) to 1 (full)
     private float _fillLevel;
-    private bool onCooldown = false;
+    public bool currentlyFilling = false;
     private Renderer liquidRenderer;
 
     // Amount the position moves when scale is decreased by 1
     private const float positionToScaleRatio = 0.067f;
     private const float secondsPerMinAmountIncrement = 0.02f;
     private const float minAmountIncrement = 0.01f;
+
+    [SerializeField]
+    private AudioSource fillStartAudio;
+    [SerializeField]
+    private AudioSource fillMiddleAudio;
+    [SerializeField]
+    private AudioSource fillEndAudio;
 
     void Start()
     {
@@ -27,20 +34,33 @@ public class Glass : MonoBehaviour
         SetLevel(0);
     }
 
-    public void Add(Color drinkColor)
+    public void StartFilling(Color drinkColor)
     {
-        if (onCooldown || _fillLevel == 1) return;
-
-        AdjustLevel(minAmountIncrement);
-        AdjustColor(minAmountIncrement, drinkColor);
-        StartCoroutine(Cooldown());
+        fillStartAudio.Play();
+        if (_fillLevel == 1) return;
+        fillMiddleAudio.Play();
+        currentlyFilling = true;
+        StartCoroutine(Add(drinkColor));
     }
 
-    IEnumerator Cooldown()
+    public void StopFilling()
     {
-        onCooldown = true;
-        yield return new WaitForSeconds(secondsPerMinAmountIncrement);
-        onCooldown = false;
+        if (!currentlyFilling) return;
+
+        currentlyFilling = false;
+        fillMiddleAudio.Stop();
+        fillEndAudio.Play();
+    }
+
+    IEnumerator Add(Color drinkColor)
+    {
+        while (currentlyFilling && _fillLevel < 1)
+        {
+            AdjustLevel(minAmountIncrement);
+            AdjustColor(minAmountIncrement, drinkColor);
+            yield return new WaitForSeconds(secondsPerMinAmountIncrement);
+        }
+        StopFilling();
     }
 
     void AdjustLevel(float amount)
