@@ -26,6 +26,12 @@ public class Singleton : MonoBehaviour
     private Vector3? lastPlayerPosition;
     private Quaternion? lastPlayerRotation;
 
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    static void ResetStatics()
+    {
+        Instance = null;
+    }
+
     void Awake()
     {
         if (Instance != null)
