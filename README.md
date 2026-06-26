@@ -6,6 +6,8 @@ A Unity game where you are at a buffet and can take food.
 
 Explore options and build out a plate.
 
+Made for [Stardance](https://stardance.hackclub.com/). [(Project page)](https://stardance.hackclub.com/projects/6822)
+
 ## Roadmap
 
 Subject to change
