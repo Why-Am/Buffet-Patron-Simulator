@@ -26,8 +26,7 @@ Subject to change
     - [x] ~10 foods with different structural properties
 
 - [ ] Extra features
-    - [ ] Decoration
-        - [ ] Add a table or something to the placement scene
+    - [x] Decoration
     - [x] Drinks & liquids
     - [ ] Calorie counter
     - [ ] "Eating"
@@ -72,5 +71,6 @@ Subject to change
     - Export settings: selected objects, apply transform
 3. After importing to Unity, enable Read/Write on the model
 4. Create a prefab with a MeshFilter, MeshCollider, and the FoodDeformer script
-5. Add to Assets/Resources/FoodItems/
+5. Add to Assets/FoodItems/
+    - Assets/Resources/FoodItems/ may be used to make foods available in the FullMenuScene. There may be a performance or memory cost to it.
 6. Done.
