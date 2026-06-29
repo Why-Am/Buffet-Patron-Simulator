@@ -1,6 +1,14 @@
 # Buffet Patron Simulator
 
-Play: https://yhlu.itch.io/buffet-patron-simulator
+![Cover image](PromotionalImages/buffet_patron_simulator_logo.png)
+
+## Links
+
+🎮 Play: https://yhlu.itch.io/buffet-patron-simulator
+
+📺 Trailer: https://youtu.be/KIWuaLkeX5Q
+
+## Description
 
 A Unity game where you are at a buffet and can take food.
 
@@ -37,7 +45,6 @@ Subject to change
 
 - Unity 6
 - Visual Studio Code
-- ~~MagicaVoxel~~
 - Blender
 
 ### Third Party Assets
@@ -58,7 +65,6 @@ Subject to change
 
 ## Self Notes
 
-- ~~For the purposes of this project, 1 voxel = 1x1x1 cm. Therefore, my models need to be scaled by 0.1 in Unity.~~
 - Models need many evenly distributed vertices for deformations to look good.
 - Voxel model textures don't work well with Blender remesh. I'll see if I can paint the textures directly in Blender instead.
 
