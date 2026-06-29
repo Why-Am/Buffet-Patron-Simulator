@@ -1,5 +1,3 @@
-# Buffet Patron Simulator
-
 ![Cover image](PromotionalImages/buffet_patron_simulator_logo.png)
 
 ## Links
@@ -16,7 +14,7 @@ Explore options and build out a plate.
 
 Made for [Stardance](https://stardance.hackclub.com/). [(Project page)](https://stardance.hackclub.com/projects/6822)
 
-## Roadmap
+## Features/Roadmap
 
 Subject to change
 
@@ -41,7 +39,7 @@ Subject to change
 
 ## Credits
 
-### Software
+### Software Used
 
 - Unity 6
 - Visual Studio Code
@@ -67,6 +65,7 @@ Subject to change
 
 - Models need many evenly distributed vertices for deformations to look good.
 - Voxel model textures don't work well with Blender remesh. I'll see if I can paint the textures directly in Blender instead.
+- Actually, I will just make the models in Blender.
 
 ### How to Add Food Items
 
@@ -74,7 +73,7 @@ Subject to change
     - Name each element (e.g., material) descriptively so they will be easier to find in Unity.
     - Ensure it has enough vertices for mesh deformation to work.
     - The pivot of the model should be at its bottom
-    - Export settings: selected objects, apply transform
+    - Blender export settings: selected objects, apply transform
 3. After importing to Unity, enable Read/Write on the model
 4. Create a prefab with a MeshFilter, MeshCollider, and the FoodDeformer script
 5. Add to Assets/FoodItems/
