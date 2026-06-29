@@ -1,12 +1,12 @@
-![Cover image](PromotionalImages/buffet_patron_simulator_logo.png)
+![Logo](PromotionalImages/buffet_patron_simulator_logo.png)
 
-## Links
+# Links
 
-🎮 Play: https://yhlu.itch.io/buffet-patron-simulator
+## 🎮 Play: https://yhlu.itch.io/buffet-patron-simulator
 
-📺 Trailer: https://youtu.be/KIWuaLkeX5Q
+## 📺 Trailer: https://youtu.be/KIWuaLkeX5Q
 
-## Description
+# Description
 
 A Unity game where you are at a buffet and can take food.
 
@@ -14,7 +14,13 @@ Explore options and build out a plate.
 
 Made for [Stardance](https://stardance.hackclub.com/). [(Project page)](https://stardance.hackclub.com/projects/6822)
 
-## Features/Roadmap
+# Screenshots
+
+![Cheese placed on a burger](PromotionalImages/realistic_food_deformation.png)
+![Pouring a drink](PromotionalImages/detailed_interactions.png)
+![Egg tower](PromotionalImages/egg.png)
+
+# Features/Roadmap
 
 Subject to change
 
@@ -37,15 +43,15 @@ Subject to change
     - [ ] Calorie counter
     - [ ] "Eating"
 
-## Credits
+# Credits
 
-### Software Used
+## Software Used
 
 - Unity 6
 - Visual Studio Code
 - Blender
 
-### Third Party Assets
+## Third Party Assets
 
 - Skybox: [Joburg Central Sunset](https://polyhaven.com/a/sunset_jhbcentral) from Polyhaven under [CC0](https://creativecommons.org/publicdomain/zero/1.0/)
 - Plate exchange sound effect: ["Plates stack on top of each other, clatter, version 3"](https://www.zapsplat.com/music/plates-stack-on-top-of-each-other-clatter-version-3) from Zapsplat under the [standard license for free users](https://www.zapsplat.com/license-type/standard-license/)
@@ -54,20 +60,20 @@ Subject to change
 - Food placing sound effect: ["Toast place down on surface"](https://www.zapsplat.com/music/toast-place-down-on-surface/) from Zapsplat under the [standard license for free users](https://www.zapsplat.com/license-type/standard-license/)
 - Comic strip poster: https://www.xkcd.com/1795; use permitted by https://xkcd.com/about/
 
-## AI Disclosure
+# AI Disclosure
 
 - I direct the game
 - I make art assets (aside from those credited above)
 - LLMs used for technical questions
 - There may be AI generated or architected code - I aim to understand, adapt, and tweak such code
 
-## Self Notes
+# Self Notes
 
 - Models need many evenly distributed vertices for deformations to look good.
 - Voxel model textures don't work well with Blender remesh. I'll see if I can paint the textures directly in Blender instead.
 - Actually, I will just make the models in Blender.
 
-### How to Add Food Items
+## How to Add Food Items
 
 1. Make the model and texture. 
     - Name each element (e.g., material) descriptively so they will be easier to find in Unity.
